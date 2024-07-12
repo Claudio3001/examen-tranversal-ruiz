@@ -1,0 +1,76 @@
+trabajadores = ["Juan Pérez,María García,Carlos López,Ana Martínez,Pedro Rodríguez,Laura Hernández,Miguel Sánchez,Isabel Gómez,Francisco Díaz,Elena Fernández"]
+import random
+def generar_sueldos():
+    sueldos =[]
+    for i in range(10):
+        sueldo = random.randint(300000, 250000)
+        sueldos.append(sueldo)
+        return sueldo
+def clasificar_sueldos(sueldos):
+    sueldos.sort()
+    return sueldos
+def ver_estadisticas(sueldos):
+    total_sueldos = sum(sueldos)
+    promedio_sueldos = total_sueldos /len(sueldos)
+    sueldo_mas_alto = max(sueldos)
+    sueldo_mas_bajo = min(sueldos)
+    print("Total de sueldos:",total_sueldos)
+    print("promedio de sueldos:",promedio_sueldos)
+    print("sueldo mas alto.:",sueldo_mas_alto)
+    print("sueldo mas bajo:",sueldo_mas_bajo)
+def generar_reporte(sueldos,empleados):
+    descuento_salud = 0.07
+    descuento_afp = 0.12
+    print("reporte de sueldos:")
+    print("------------------")
+    print("empleado\tSueldob base\tDescuento salud\tDescuendo AFP\tSueldo liquido")
+    for i in range(len(sueldos)):
+        sueldo_base =sueldos[i]
+        descuento_salud=sueldo_base*descuento_salud
+        descuento_afp=sueldo_base*descuento_afp
+        print(empleados[1],"\t", sueldo_base, "\t\t",descuento_salud, "\t\t",descuento_afp, "\t\t",sueldo_liquido)
+def exportar_reporte(sueldos, empleados):
+    descuento_salud =0.07
+    descuento_afp =0.12
+    with open("reporte_sueldos.csv","w")as archivo:
+        archivo.write("empleado,sueldo base, decuento salud,descuento afp,sueldo liquido\n")
+        for i in range(len(sueldos)):
+            sueldo_base=sueldos[i]
+            descuento_salud =sueldo_base*descuento_salud
+            descuento_afp=sueldo_base*descuento_afp
+            sueldo_liquido=sueldo_base - descuento_salud-descuento_afp
+            linea =empleados[i]+","+ str(sueldo_base)+","+str(descuento_salud)+","+str(descuento_afp)+","+str(sueldo_liquido)+ "\n"
+            archivo.write(linea)
+            print("reporte exportado exitosamente.")
+def main():
+        if __name__=="__main__":
+            main()
+        sueldos =[]
+        opcion = 0
+        while opcion != 6:
+            print("menu:")
+            print("1. asignar sueldos aleatorios")
+            print("2. clasificar sueldos")
+            print("3. ver estadisticas")
+            print("4. reporte de sueldos")
+            print("5. exportar reporte de sueldos")
+            print("6. salir del programa")
+            opcion=int(input("seleccione una opcion:"))
+        if opcion == 1:
+            sueldos=generar_sueldos()
+            print("sueldos asignados aleatoriamente.")
+        elif opcion == 2:
+            sueldos =clasificar_sueldos(sueldos)
+            print("sueldos clasificados por orden asendente.")
+        elif opcion ==3:
+            ver_estadisticas(sueldos)
+        elif opcion ==4:
+            generar_reporte(sueldos,trabajadores)
+        elif opcion ==5:
+            exportar_reporte(sueldo,trabajadores)
+        elif opcion ==6:
+            print("saliendo del programa")
+        else:
+            print("opcion invalida. intente nuevamente.")
+
+

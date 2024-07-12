@@ -1,1 +1,0 @@
-# examen-tranversal-ruiz
